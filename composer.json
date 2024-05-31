@@ -3,7 +3,10 @@
     "autoload": {
         "psr-4": {
             "Dacdc\\Asm\\": "src/"
-        }
+        },
+        "files": [
+            "helper.php"
+        ]
     },
     "authors": [
         {
