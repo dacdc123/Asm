@@ -3,6 +3,7 @@
 namespace Dacdc\Asm\Controllers\Admin;
 
 use Dacdc\Asm\Commons\Controller;
+use Dacdc\Asm\Commons\Helper;
 use Dacdc\Asm\Models\User;
 
 class UserController extends Controller
@@ -14,6 +15,12 @@ class UserController extends Controller
     }
 
     public function index(){
+        [$users,$totalPage] = $this->user->paginate($_GET['page'] ?? 1);
+        $this->renderViewAdmin('users.index', [
+            'users' => $users,
+            'totalPage' => $totalPage
+        ]);
+
         echo __CLASS__ . '@' . __FUNCTION__;
     }
     public function create(){
