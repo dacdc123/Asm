@@ -1,6 +1,6 @@
 <?php
 
-namespace Dacdc\Asm\Commons;
+namespace Dacdc\Asm1\Commons;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\DriverManager;
@@ -22,12 +22,14 @@ class Model
             'port'      => $_ENV['DB_PORT'],
             'driver'    => $_ENV['DB_DRIVER'],
         ];
-
         $this->conn = DriverManager::getConnection($connectionParams);
-
-        $this->queryBuilder = $this->conn->createQueryBuilder();
-
         
+        $this->queryBuilder = $this->conn->createQueryBuilder();
+    }
+
+    public function getConnection()
+    {
+        return $this->conn;
     }
 
     // CRUD
@@ -50,17 +52,19 @@ class Model
 
     public function paginate($page = 1, $perPage = 5)
     {
+        $queryBuilder = clone($this->queryBuilder);
+
+        $totalPage = ceil($this->count() / $perPage);
+
         $offset = $perPage * ($page - 1);
 
-        $data = $this->queryBuilder
+        $data = $queryBuilder
         ->select('*')
         ->from($this->tableName)
         ->setFirstResult($offset)
         ->setMaxResults($perPage)
         ->orderBy('id', 'desc')
         ->fetchAllAssociative();
-
-        $totalPage = ceil($this->count() / $perPage);
 
         return [$data, $totalPage];
     }

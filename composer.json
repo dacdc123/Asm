@@ -2,7 +2,7 @@
     "name": "dacdc/asm",
     "autoload": {
         "psr-4": {
-            "Dacdc\\Asm\\": "src/"
+            "Dacdc\\Asm1\\": "src/"
         },
         "files": [
             "helper.php"

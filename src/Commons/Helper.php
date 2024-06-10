@@ -1,6 +1,6 @@
 <?php
 
-namespace Dacdc\Asm\Commons;
+namespace Dacdc\Asm1\Commons;
 
 class Helper
 {

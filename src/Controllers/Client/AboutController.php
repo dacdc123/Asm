@@ -1,8 +1,8 @@
 <?php 
 
-namespace Dacdc\Asm\Controllers\Client;
+namespace Dacdc\Asm1\Controllers\Client;
 
-use Dacdc\Asm\Commons\Controller;
+use Dacdc\Asm1\Commons\Controller;
 
 class AboutController extends Controller
 {
